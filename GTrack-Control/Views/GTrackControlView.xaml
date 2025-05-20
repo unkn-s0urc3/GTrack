@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="GTrack_Control.Views.GTrackControlView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             d:DesignHeight="600" d:DesignWidth="1000">
+    <Grid>
+        <StackPanel>
+            <TextBlock Text="GTrackControlView" FontSize="20"/>
+            <Button Content="Перейти в SettingView" Command="{Binding NavigateToSettingViewCommand}" Margin="10"/>
+            <Button Content="Отправить сообщение о событии" Command="{Binding SendMessageEventCommand}" Margin="10"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

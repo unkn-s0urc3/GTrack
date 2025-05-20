@@ -3,11 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:prism="http://prismlibrary.com/"
         mc:Ignorable="d"
-        Title="GTrack-Control"
+        Title="{Binding Title}"
         Height="600" Width="1000"
+        MinHeight="600" MinWidth="1000"
         WindowStartupLocation="CenterScreen">
-    <Grid>
-        
-    </Grid>
+    
+        <ContentControl prism:RegionManager.RegionName="MainRegion"/>
 </Window>
