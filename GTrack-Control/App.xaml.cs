@@ -1,4 +1,6 @@
 ﻿using System.Windows;
+using GTrack_Control.Services;
+using GTrack_Control.Services.Interfaces;
 using GTrack_Control.ViewModels;
 using GTrack_Control.Views;
 
@@ -12,6 +14,10 @@ public partial class App : PrismApplication
         
         containerRegistry.RegisterForNavigation<GTrackControlView>();
         containerRegistry.RegisterForNavigation<SettingView>();
+        
+        containerRegistry.RegisterDialog<MessageDialogView, MessageDialogViewModel>();
+        
+        containerRegistry.Register<IFileDialogService, FileDialogService>();
     }
 
     protected override Window CreateShell()
