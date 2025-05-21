@@ -7,21 +7,19 @@ public class FileDialogService : IFileDialogService
 {
     public string OpenFile(string filter = "All files (*.*)|*.*")
     {
-        var dialog = new OpenFileDialog
-        {
-            Filter = filter
-        };
+        var dialog = new OpenFileDialog { Filter = filter };
 
-        return dialog.ShowDialog() == true ? dialog.FileName : null;
+        return dialog.ShowDialog() == true 
+            ? dialog.FileName 
+            : null;
     }
 
     public string SaveFile(string filter = "All files (*.*)|*.*")
     {
-        var dialog = new SaveFileDialog
-        {
-            Filter = filter
-        };
+        var dialog = new OpenFileDialog { Filter = filter };
 
-        return dialog.ShowDialog() == true ? dialog.FileName : null;
+        return dialog.ShowDialog() == true 
+            ? dialog.FileName 
+            : null;
     }
 }

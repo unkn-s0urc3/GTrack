@@ -18,6 +18,8 @@ public partial class App : PrismApplication
         containerRegistry.RegisterDialog<MessageDialogView, MessageDialogViewModel>();
         
         containerRegistry.Register<IFileDialogService, FileDialogService>();
+        containerRegistry.Register<IApplicationService, ApplicationService>();
+        containerRegistry.RegisterSingleton<INetworkValidationService, NetworkValidationService>();
     }
 
     protected override Window CreateShell()

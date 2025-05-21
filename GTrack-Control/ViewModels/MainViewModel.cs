@@ -1,10 +1,12 @@
-﻿using GTrack_Control.Events;
+﻿using GTrack_Control.Services.Interfaces;
+using GTrack_Control.Views;
 
 namespace GTrack_Control.ViewModels;
 
 public class MainViewModel : BindableBase
 {
-    private readonly IEventAggregator _eventAggregator;
+    private readonly IRegionManager _regionManager;
+    private readonly IApplicationService _applicationService;
 
     private string _title;
     public string Title
@@ -13,17 +15,34 @@ public class MainViewModel : BindableBase
         set => SetProperty(ref _title, value);
     }
 
-    public MainViewModel(IEventAggregator eventAggregator)
+    public DelegateCommand NavigateToGTrackControlViewCommand { get; }
+    public DelegateCommand NavigateToSettingViewCommand { get; }
+    public DelegateCommand ApplicationExitCommand { get; }
+    
+    public MainViewModel(IRegionManager regionManager, IApplicationService applicationService)
     {
-        _eventAggregator = eventAggregator;
+        _regionManager = regionManager;
+        _applicationService = applicationService;
 
         Title = "GTrack-Control";
         
-        _eventAggregator.GetEvent<AppMessageEvent>().Subscribe(OnMessageReceived);
+        NavigateToGTrackControlViewCommand = new DelegateCommand(NavigateToGTrackControlView);
+        NavigateToSettingViewCommand = new DelegateCommand(NavigateToSettingView);
+        ApplicationExitCommand = new DelegateCommand(ApplicationExit);
     }
 
-    private void OnMessageReceived(string message)
+    private void NavigateToGTrackControlView()
     {
-        Title = $"Message: {message}";
+        _regionManager.RequestNavigate("MainRegion", nameof(GTrackControlView));
+    }
+    
+    private void NavigateToSettingView()
+    {
+        _regionManager.RequestNavigate("MainRegion", nameof(SettingView));
+    }
+    
+    private void ApplicationExit()
+    {
+        _applicationService.Shutdown();
     }
 }
