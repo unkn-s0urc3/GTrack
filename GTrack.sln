@@ -8,6 +8,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GTrack-Events", "GTrack-Eve
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GTrack-MessageDialogModule", "GTrack-MessageDialogModule\GTrack-MessageDialogModule.csproj", "{FAB209B7-AB70-4F64-84DD-133F4743E42A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GTrack-Node", "GTrack-Node\GTrack-Node.csproj", "{8F2FA546-BF47-40B9-AAA9-DA34A3B74E90}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GTrack-Station", "GTrack-Station\GTrack-Station.csproj", "{7427A3A0-968A-4C71-9683-66D7E7872709}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +34,13 @@ Global
 		{FAB209B7-AB70-4F64-84DD-133F4743E42A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FAB209B7-AB70-4F64-84DD-133F4743E42A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FAB209B7-AB70-4F64-84DD-133F4743E42A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F2FA546-BF47-40B9-AAA9-DA34A3B74E90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F2FA546-BF47-40B9-AAA9-DA34A3B74E90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F2FA546-BF47-40B9-AAA9-DA34A3B74E90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F2FA546-BF47-40B9-AAA9-DA34A3B74E90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7427A3A0-968A-4C71-9683-66D7E7872709}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7427A3A0-968A-4C71-9683-66D7E7872709}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7427A3A0-968A-4C71-9683-66D7E7872709}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7427A3A0-968A-4C71-9683-66D7E7872709}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
