@@ -1,5 +1,5 @@
-﻿using GTrack_Control.Services.Interfaces;
-using GTrack_Control.Views;
+﻿using GTrack_Control.Views;
+using GTrack_Services.Interfaces;
 
 namespace GTrack_Control.ViewModels;
 

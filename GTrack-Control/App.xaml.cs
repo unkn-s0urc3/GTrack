@@ -1,8 +1,9 @@
 ﻿using System.Windows;
-using GTrack_Control.Services;
-using GTrack_Control.Services.Interfaces;
 using GTrack_Control.ViewModels;
 using GTrack_Control.Views;
+using GTrack_MessageDialogModule.Modules;
+using GTrack_Services;
+using GTrack_Services.Interfaces;
 
 namespace GTrack_Control;
 
@@ -14,8 +15,6 @@ public partial class App : PrismApplication
         
         containerRegistry.RegisterForNavigation<GTrackControlView>();
         containerRegistry.RegisterForNavigation<SettingView>();
-        
-        containerRegistry.RegisterDialog<MessageDialogView, MessageDialogViewModel>();
         
         containerRegistry.Register<IFileDialogService, FileDialogService>();
         containerRegistry.Register<IApplicationService, ApplicationService>();
@@ -33,5 +32,11 @@ public partial class App : PrismApplication
         
         var regionManager = Container.Resolve<IRegionManager>();
         regionManager.RequestNavigate("MainRegion", nameof(GTrackControlView));
+    }
+
+    protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
+    {
+        base.ConfigureModuleCatalog(moduleCatalog);
+        moduleCatalog.AddModule<MessageDialogModule>();
     }
 }

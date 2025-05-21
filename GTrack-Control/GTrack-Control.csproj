@@ -14,4 +14,10 @@
       <PackageReference Include="Prism.Wpf" Version="9.0.537" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\GTrack-Events\GTrack-Events.csproj" />
+      <ProjectReference Include="..\GTrack-MessageDialogModule\GTrack-MessageDialogModule.csproj" />
+      <ProjectReference Include="..\GTrack-Services\GTrack-Services.csproj" />
+    </ItemGroup>
+
 </Project>

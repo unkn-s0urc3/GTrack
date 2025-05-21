@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace GTrack_Control.Views;
+namespace GTrack_MessageDialogModule.Views;
 
 public partial class MessageDialogView : UserControl
 {

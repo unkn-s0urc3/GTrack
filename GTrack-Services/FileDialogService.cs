@@ -1,7 +1,7 @@
-﻿using GTrack_Control.Services.Interfaces;
+﻿using GTrack_Services.Interfaces;
 using Microsoft.Win32;
 
-namespace GTrack_Control.Services;
+namespace GTrack_Services;
 
 public class FileDialogService : IFileDialogService
 {

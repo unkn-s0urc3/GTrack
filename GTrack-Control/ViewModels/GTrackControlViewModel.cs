@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
-using GTrack_Control.Events;
-using GTrack_Control.Services.Interfaces;
 using GTrack_Control.Views;
+using GTrack_Events;
+using GTrack_Events.Messages;
 
 namespace GTrack_Control.ViewModels;
 

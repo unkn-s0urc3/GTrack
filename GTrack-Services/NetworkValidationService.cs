@@ -1,7 +1,7 @@
 ﻿using System.Net;
-using GTrack_Control.Services.Interfaces;
+using GTrack_Services.Interfaces;
 
-namespace GTrack_Control.Services;
+namespace GTrack_Services;
 
 public class NetworkValidationService : INetworkValidationService
 {

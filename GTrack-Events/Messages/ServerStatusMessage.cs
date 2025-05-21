@@ -1,4 +1,4 @@
-﻿namespace GTrack_Control.Events;
+﻿namespace GTrack_Events.Messages;
 
 public class ServerStatusMessage
 {
@@ -6,5 +6,3 @@ public class ServerStatusMessage
     
     public string Status { get; set; }
 }
-
-public class AppMessageEvent : PubSubEvent<ServerStatusMessage> { }
