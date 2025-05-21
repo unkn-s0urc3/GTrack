@@ -1,4 +1,4 @@
-﻿namespace GTrack_Control.Services.Interfaces;
+﻿namespace GTrack_Services.Interfaces;
 
 public interface IFileDialogService
 {

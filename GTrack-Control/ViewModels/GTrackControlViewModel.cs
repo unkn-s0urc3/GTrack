@@ -1,6 +1,7 @@
-﻿using GTrack_Control.Events;
-using GTrack_Control.Services.Interfaces;
+﻿using System.Collections.ObjectModel;
 using GTrack_Control.Views;
+using GTrack_Events;
+using GTrack_Events.Messages;
 
 namespace GTrack_Control.ViewModels;
 
@@ -9,53 +10,84 @@ public class GTrackControlViewModel : BindableBase, INavigationAware
     private readonly IRegionManager _regionManager;
     private readonly IEventAggregator _eventAggregator;
     private readonly IDialogService _dialogService;
-    private readonly IFileDialogService _fileDialogService;
 
+    private string _nodeServerStatus;
+    public string NodeServerStatus
+    {
+        get => _nodeServerStatus;
+        set => SetProperty(ref _nodeServerStatus, value);
+    }
+
+    private string _houstonServerStatus;
+    public string HoustonServerStatus
+    {
+        get => _houstonServerStatus;
+        set => SetProperty(ref _houstonServerStatus, value);
+    }
+
+    private ObservableCollection<string> _gTrackStations;
+    public ObservableCollection<string> GTrackStations
+    {
+        get => _gTrackStations;
+        set => SetProperty(ref _gTrackStations, value);
+    }
+
+    private string _selectedGTrackStation;
+    public string SelectedGTrackStation
+    {
+        get => _selectedGTrackStation;
+        set => SetProperty(ref _selectedGTrackStation, value);
+    }
+
+    private string _currentObservation;
+    public string CurrentObservation
+    {
+        get => _currentObservation;
+        set => SetProperty(ref _currentObservation, value);
+    }
+    
+    public DelegateCommand AcceptCommand { get; }
     public DelegateCommand NavigateToSettingViewCommand { get; }
-    public DelegateCommand SendMessageEventCommand { get; }
 
     public GTrackControlViewModel(IRegionManager regionManager, 
-        IEventAggregator eventAggregator, IDialogService dialogService,
-            IFileDialogService fileDialogService)
+        IEventAggregator eventAggregator, IDialogService dialogService)
     {
         _regionManager = regionManager;
         _eventAggregator = eventAggregator;
         _dialogService = dialogService;
-        _fileDialogService = fileDialogService;
         
+        AcceptCommand = new DelegateCommand(OnAccept);
         NavigateToSettingViewCommand = new DelegateCommand(Navigate);
-        SendMessageEventCommand = new DelegateCommand(SendMessageEvent);
+        
+        _eventAggregator.GetEvent<AppMessageEvent>().Subscribe(OnServerStatusChanged);
+        
+        // variables
+        GTrackStations = new ObservableCollection<string>
+        {
+            "Station 1", "Station 2", "Station 3"
+        };
+        CurrentObservation = "ReshUCube-2";
     }
 
+    private void OnAccept()
+    {
+        
+    }
+    
     private void Navigate()
     {
         _regionManager.RequestNavigate("MainRegion", nameof(SettingView));
     }
     
-    private void SendMessageEvent()
+    private void OnServerStatusChanged(ServerStatusMessage message)
     {
-        _eventAggregator.GetEvent<AppMessageEvent>().Publish("Hello from GTrackControl!");
-        
-        var parameters = new DialogParameters { { "message", "Hello from GTrackControl!" } };
-        _dialogService.ShowDialog(nameof(MessageDialogView), parameters, r =>
+        if (message.ServerName == "Node")
         {
-            if (r.Result == ButtonResult.OK)
-            {
-                OpenFile();
-            }
-        });
-    }
-    
-    private void OpenFile()
-    {
-        var filePath = _fileDialogService.OpenFile("Text files (*.txt)|*.txt|All files (*.*)|*.*");
-
-        if (!string.IsNullOrEmpty(filePath))
+            NodeServerStatus = message.Status;
+        }
+        else if (message.ServerName == "Houston")
         {
-            _dialogService.ShowDialog("MessageDialog", new DialogParameters
-            {
-                { "message", $"File selected: {filePath}" }
-            }, r => { });
+            HoustonServerStatus = message.Status;
         }
     }
 

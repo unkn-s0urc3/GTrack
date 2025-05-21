@@ -1,21 +1,21 @@
-﻿using GTrack_Control.Views;
+﻿using GTrack_Node.Views;
 using GTrack_Services.Interfaces;
 
-namespace GTrack_Control.ViewModels;
+namespace GTrack_Node.ViewModels;
 
 public class MainViewModel : BindableBase
 {
     private readonly IRegionManager _regionManager;
     private readonly IApplicationService _applicationService;
-
+    
     private string _title;
     public string Title
     {
         get => _title;
         set => SetProperty(ref _title, value);
     }
-
-    public DelegateCommand NavigateToGTrackControlViewCommand { get; }
+    
+    public DelegateCommand NavigateToGTrackNodeViewCommand { get; }
     public DelegateCommand NavigateToSettingViewCommand { get; }
     public DelegateCommand ApplicationExitCommand { get; }
     
@@ -24,16 +24,16 @@ public class MainViewModel : BindableBase
         _regionManager = regionManager;
         _applicationService = applicationService;
 
-        Title = "GTrack-Control";
+        Title = "GTrack-Node";
         
-        NavigateToGTrackControlViewCommand = new DelegateCommand(NavigateToGTrackControlView);
+        NavigateToGTrackNodeViewCommand = new DelegateCommand(NavigateToGTrackNodeView);
         NavigateToSettingViewCommand = new DelegateCommand(NavigateToSettingView);
         ApplicationExitCommand = new DelegateCommand(ApplicationExit);
     }
 
-    private void NavigateToGTrackControlView()
+    private void NavigateToGTrackNodeView()
     {
-        _regionManager.RequestNavigate("MainRegion", nameof(GTrackControlView));
+        _regionManager.RequestNavigate("MainRegion", nameof(GTrackNodeView));
     }
     
     private void NavigateToSettingView()

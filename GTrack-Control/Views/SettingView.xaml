@@ -5,9 +5,116 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d"
              d:DesignHeight="600" d:DesignWidth="1000">
-    <StackPanel>
-        <TextBlock Text="SettingView" FontSize="20"/>
-        <Button Content="Назад в GTrackControlView" Command="{Binding NavigateToGTrackControlViewCommand}" Margin="10"/>
-        <Button Content="Отправить сообщение о событии" Command="{Binding SendMessageEventCommand}" Margin="10"/>
-    </StackPanel>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+
+            <GroupBox Header="Настройки сервера Node">
+                <StackPanel HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Margin="0,0,0,15">
+                    <StackPanel Orientation="Horizontal" 
+                                Margin="5">
+                        <StackPanel Margin="5">
+                            <TextBlock Text="Локальный IP"/>
+                            <TextBox Width="100"
+                                     Text="{Binding NodeIpAddress}"/>
+                        </StackPanel>
+                    
+                        <StackPanel Margin="5">
+                            <TextBlock Text="Порт"/>
+                            <TextBox Width="100"
+                                     Text="{Binding NodePort}"/>
+                        </StackPanel>
+                    </StackPanel>
+                    
+                    <Button Content="Принять"
+                            Command="{Binding SaveNodeSettingsCommand }"
+                            HorizontalAlignment="Left"
+                            Height="30" Width="210"
+                            Margin="10,0,0,0"/>
+                </StackPanel>
+            </GroupBox>
+            
+            <GroupBox Grid.Row="1" Header="Настройки сервера Houston">
+                <StackPanel HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Margin="0,0,0,15">
+                    <StackPanel Orientation="Horizontal" 
+                                Margin="5">
+                        <StackPanel Margin="5">
+                            <TextBlock Text="Локальный IP"/>
+                            <TextBox Width="100"
+                                     Text="{Binding HoustonIpAddress}"/>
+                        </StackPanel>
+                    
+                        <StackPanel Margin="5">
+                            <TextBlock Text="Порт"/>
+                            <TextBox Width="100"
+                                     Text="{Binding HoustonPort}"/>
+                        </StackPanel>
+                    </StackPanel>
+                    
+                    <Button Content="Принять"
+                            Command="{Binding SaveHoustonSettingsCommand }"
+                            HorizontalAlignment="Left"
+                            Height="30" Width="210"
+                            Margin="10,0,0,0"/>
+                </StackPanel>
+            </GroupBox>
+            
+            <GroupBox Grid.Row="2" Header="Настройки TLE">
+                <StackPanel HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Margin="0,0,0,15">
+                    <StackPanel Orientation="Horizontal" 
+                                Margin="5">
+                        <StackPanel Margin="5">
+                            <TextBlock Text="Путь"/>
+                            <TextBox Width="210"
+                                     Text="{Binding TleFilePath}"/>
+                        </StackPanel>
+                    </StackPanel>
+                    
+                    <Button Content="Загрузить"
+                            Command="{Binding LoadTleCommand}"
+                            HorizontalAlignment="Left"
+                            Height="30" Width="210"
+                            Margin="10,0,0,0"/>
+                </StackPanel>
+            </GroupBox>
+        </Grid>
+        
+        <Grid Grid.Column="1" Margin="15">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            
+            <TextBlock Text="Настройка экземпляров Station"/>
+            
+            <ListBox Grid.Row="1" 
+                     ItemsSource="{Binding GTrackStations}"
+                     SelectedItem="{Binding SelectedGTrackStation}"
+                     Margin="0,5,0,0"/>
+            
+            <StackPanel Grid.Row="2">
+                <Button Content="Назад"
+                        Command="{Binding NavigateToGTrackControlViewCommand}"
+                        HorizontalAlignment="Right"
+                        Height="30" Width="210"
+                        Margin="0,15,0,10"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
 </UserControl>

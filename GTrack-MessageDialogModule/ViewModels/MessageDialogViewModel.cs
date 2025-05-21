@@ -1,4 +1,4 @@
-﻿namespace GTrack_Control.ViewModels;
+﻿namespace GTrack_MessageDialogModule.ViewModels;
 
 public class MessageDialogViewModel : BindableBase, IDialogAware
 {
